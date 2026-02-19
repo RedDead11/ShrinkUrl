@@ -1,0 +1,20 @@
+# --- Top Level / System ---
+.DS_Store
+.vscode/
+.env
+*.env.local
+
+# --- Frontend (React/Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# --- Backend (Node/Express) ---
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/*.log
+
+# --- General Safety Net ---
+node_modules/
+npm-debug.log*
