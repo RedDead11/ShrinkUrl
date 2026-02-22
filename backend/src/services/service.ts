@@ -1,31 +1,34 @@
 import { URLMapping } from "../models/model";
 import { generateShortCode } from "../utils/generateShortCode";
+import {prisma} from "../lib/prisma";
 
-// temporary in-memory database
-const urlDatabase = new Map<string, URLMapping>();
-
-export const createShortUrlService = (originalUrl: string): string => {
+export const createShortUrlService = async (originalUrl: string): Promise<string> => {
   const shortCode = generateShortCode();
 
-  const urlData: URLMapping = {
-    originalUrl,
-    shortCode,
-    clicks: 0,
-    createdAt: new Date(),
-  };
+  await prisma.url.create({
+    data: {
+      originalUrl,
+      shortCode,
+    },
+  });
 
-  urlDatabase.set(shortCode, urlData);
   return shortCode;
 };
 
-export const getUrlService = (shortCode: string): URLMapping | undefined => {
-  return urlDatabase.get(shortCode);
+// Get a URL by its shortcode
+
+export const getUrlService = async (shortCode: string) => {
+  return await prisma.url.findUnique({
+    where: {shortCode},
+  });
 };
 
-export const incrementClicksService = (shortCode: string): void => {
-  const urlData = urlDatabase.get(shortCode);
-  if (urlData) {
-    urlData.clicks += 1;
-    urlDatabase.set(shortCode, urlData);
-  }
+// Increment clicks
+export const incrementClicksService = async (shortCode: string) => {
+  await prisma.url.update({
+    where: {shortCode},
+    data: {
+      clicks: {increment: 1},
+    },
+  });
 };

@@ -3,10 +3,13 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="container">
-      <h1>URL Shortener</h1>
+    <main className="app-container">
+      <header className="brand-section">
+        <h1>Shrink<span>URL</span></h1>
+        <p>Create short, powerful links in seconds.</p>
+      </header>
       <UrlForm />
-    </div>
+    </main>
   );
 }
 

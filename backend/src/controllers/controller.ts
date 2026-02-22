@@ -6,33 +6,41 @@ import {
 } from "../services/service";
 
 // POST /shorten
-export const createShortUrl = (req: Request, res: Response) => {
-  const { url } = req.body;
+export const createShortUrl = async (req: Request, res: Response) => {
+  const origUrl = req.body.url;
 
-  if (!url) {
-    return res.status(400).json({ error: "URL is required" });
+  if (!origUrl.startsWith("http"))
+    return res.status(400).json({ error: "Invalid URL Format" });
+
+  try {
+    const shortCode = await createShortUrlService(origUrl);
+    res.status(201).json({ shortCode });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
-
-  const shortCode = createShortUrlService(url);
-
-  res.status(201).json({ shortCode });
 };
 
 // GET /:shortCode
-export const redirectShortUrl = (req: Request, res: Response) => {
-  const shortCodeParam = req.params.shortCode;
-  if (!shortCodeParam || Array.isArray(shortCodeParam)) {
+export const redirectShortUrl = async (req: Request, res: Response) => {
+  const { shortCode } = req.params;
+  if (!shortCode || Array.isArray(shortCode)) {
     return res.status(400).send("Invalid short code");
   }
 
-  const shortCode = shortCodeParam;
-  const urlData = getUrlService(shortCode);
+  try {
+    const urlData = await getUrlService(shortCode);
+    if (!urlData) return res.status(404).send("URL not found");
 
-  if (!urlData) {
-    return res.status(404).send("URL not found");
+    // removing await so database update happens in background
+    incrementClicksService(shortCode).catch((err) => {
+      console.error("Failed to increment clicks:", err);
+    });
+
+    // redirect immediately
+    return res.redirect(urlData.originalUrl);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
   }
-
-  incrementClicksService(shortCode);
-
-  res.redirect(urlData.originalUrl);
 };
