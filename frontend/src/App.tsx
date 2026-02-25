@@ -1,4 +1,4 @@
-import UrlForm from "./components/UrlForm";
+import UrlShortener from "./components/UrlShortener";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         <h1>Shrink<span>URL</span></h1>
         <p>Create short, powerful links in seconds.</p>
       </header>
-      <UrlForm />
+      <UrlShortener />
     </main>
   );
 }
