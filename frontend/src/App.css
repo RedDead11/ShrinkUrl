@@ -396,7 +396,77 @@ body {
 
 /* Responsive */
 @media (max-width: 480px) {
-  .brand-section h1 { font-size: 2.8rem; }
-  .short-link-display { flex-direction: column; align-items: stretch; }
-  .copy-btn, .visit-btn { width: 100%; justify-content: center; }
+  body {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .brand-section h1 {
+    font-size: 2.4rem;
+    letter-spacing: -1px;
+  }
+
+  .brand-section p {
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+  }
+
+  .url-form input[type="text"] {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+
+  .url-form button {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .result-card {
+    padding: 16px;
+  }
+
+  .short-link-display {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .short-link-text {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .copy-btn,
+  .visit-btn {
+    width: 100%;
+    height: 44px;
+    justify-content: center;
+  }
+
+  .history-card {
+    padding: 10px 12px;
+  }
+
+  .history-original {
+    font-size: 0.7rem;
+  }
+
+  .history-short {
+    font-size: 0.75rem;
+  }
+
+  .error-message {
+    font-size: 0.82rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    max-width: 100%;
+  }
+
+  .brand-section h1 {
+    font-size: 3rem;
+  }
 }
