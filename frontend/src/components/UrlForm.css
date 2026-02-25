@@ -1,0 +1,52 @@
+/* ... Keep existing CSS ... */
+
+/* New Styled Reset Button (Shorten Another) */
+.reset-link-btn {
+  background: transparent;
+  color: #6b7280;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 8px 16px;
+  display: block;
+  margin: 0 auto;
+  transition: color 0.2s ease;
+}
+
+.reset-link-btn:hover {
+  color: #111827;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* History copy icon button fix */
+.history-copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.history-copy-btn svg {
+  display: block; /* Ensures icon renders correctly */
+}
+
+/* Remove or update old secondary-btn if not used anymore */
+.secondary-btn {
+  display: none; 
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: -15px; /* Adjust based on your layout spacing */
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  border: 1px solid #fecaca;
+  text-align: center;
+  animation: fadeInUp 0.3s ease-out;
+}
