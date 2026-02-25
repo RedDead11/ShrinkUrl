@@ -5,12 +5,35 @@ import {
   incrementClicksService,
 } from "../services/service";
 
+
 // POST /shorten
 export const createShortUrl = async (req: Request, res: Response) => {
   const origUrl = req.body.url;
 
-  if (!origUrl.startsWith("http"))
-    return res.status(400).json({ error: "Invalid URL Format" });
+  // Check if its a string and not empty
+  if (!origUrl || typeof origUrl !== "string") {
+    return res.status(400).json({ error: "URL is required" });
+  }
+
+  // Parsing (make sure URLs have correct structure)
+  let parsed: URL;
+  try {
+    parsed = new URL(origUrl);
+  } catch {
+    return res.status(400).json({ error: "Invalid URL format" });
+  }
+
+  // Only allow http and https
+  if (parsed.protocol !== "http:" && parsed.protocol != "https:") {
+    return res
+      .status(400)
+      .json({ error: "Only http and https URLs are allowed" });
+  }
+
+  // Must have real hostname (blocks "http://" or "http://x")
+  if (!parsed.hostname || parsed.hostname.length < 3) {
+    return res.status(400).json({ error: "URL must have a valid domain" });
+  }
 
   try {
     const shortCode = await createShortUrlService(origUrl);
