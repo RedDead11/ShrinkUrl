@@ -1,7 +1,7 @@
 # ShrinkURL
 
 <p align="center">
-  <a href="https://shrink-url-ten.vercel.app/" target="_blank">
+  <a href="https://shrink-dhwriulm2-reds-projects-3334edb0.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/🔗_Launch_App-6366f1?style=for-the-badge&logoColor=white" alt="Launch App"/>
   </a>
 </p>
