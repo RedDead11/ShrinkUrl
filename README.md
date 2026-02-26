@@ -6,17 +6,22 @@
   </a>
 </p>
 
-A full-stack URL shortener built with React, TypeScript, Express, Prisma and PostgreSQL (Neon). Paste a long link, get a short one with click tracking, persistent history and rate limiting.
+<p align="center">
+  <img src="./screenshots/preview.png" alt="ShrinkURL Preview" width="600" style="border-radius: 12px;" />
+</p>
+
+A full-stack URL shortener built with React, TypeScript, Express, Prisma and PostgreSQL (Neon). Paste a long link, get a short one — with click tracking, visit analytics, persistent history and rate limiting.
 
 ## ✨ Features
 
 - 🔗 **URL Shortening:** Generate short codes instantly from any valid URL
-- 📊 **Click Tracking:** Every redirect increments a click counter in the database
+- 📊 **Visit Tracking:** Every redirect increments a visit counter, shown live in the history panel
 - 🔁 **Duplicate Detection:** Same URL always returns the same short code
 - 🛡️ **Rate Limiting:** Prevents abuse with per-IP request limits
 - ✅ **URL Validation:** Rejects malformed URLs and non-http/https protocols
-- 💾 **Persistent History:** Last 5 shortened links saved to localStorage
-- 📋 **One-click Copy:** Copy short links instantly to clipboard
+- 💾 **Persistent History:** Last 5 shortened links saved across sessions via localStorage
+- 📋 **One-click Copy:** Copy short links instantly with visual confirmation
+- 🗑️ **Clear History:** Remove all saved links with one click
 - 📱 **Responsive Design:** Works on desktop and mobile
 
 ## 🚀 Tech Stack
@@ -62,13 +67,12 @@ DATABASE_URL=your_neon_postgres_connection_string
 
 5. **Set up the database**
 
-Run this in your Neon SQL editor or via Prisma:
 ```bash
 cd backend
 npx prisma migrate dev --name init
 ```
 
-Or manually using Prisma schema — the `url` table requires:
+The `url` table requires:
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -96,36 +100,47 @@ Runs on `http://localhost:5173`
 
 1. Paste any URL into the input field (with or without `https://`)
 2. Click **Shorten** to generate a short link
-3. Copy the short link or click **Visit** to test it
-4. Your last 5 links appear in the **Recent Links** section below
-5. Clicking a short link redirects and increments the click counter
+3. Copy the short link or click **Visit** to open it
+4. Your last 5 links appear in the **Recent Links** panel with live visit counts
+5. Click **Clear** to wipe your history
 
 ## 🏗️ Project Structure
 
 ```
-shrinkurl/
+SHRINKURL/
 ├── backend/
+│   ├── prisma/
+│   │   └── schema.prisma          # Database schema
 │   ├── src/
 │   │   ├── controllers/
 │   │   │   └── controller.ts      # Request handlers
-│   │   ├── services/
-│   │   │   └── service.ts         # Business logic + Prisma calls
-│   │   ├── routes/
-│   │   │   └── routes.ts          # Express route definitions
-│   │   ├── models/
-│   │   │   └── model.ts           # TypeScript interfaces
 │   │   ├── lib/
 │   │   │   └── prisma.ts          # Prisma client setup
+│   │   ├── models/
+│   │   │   └── model.ts           # TypeScript interfaces
+│   │   ├── routes/
+│   │   │   └── routes.ts          # Express route definitions
+│   │   ├── services/
+│   │   │   └── service.ts         # Business logic + Prisma calls
+│   │   ├── utils/
+│   │   │   └── generateShortCode.ts
 │   │   └── index.ts               # Express app entry point
-│   └── prisma/
-│       └── schema.prisma          # Database schema
-└── frontend/
-    └── src/
-        └── components/
-            ├── UrlShortener.tsx   # Parent, manages shared state
-            ├── UrlForm.tsx        # Input form + validation
-            ├── ResultCard.tsx     # Short link result display
-            └── HistoryList.tsx    # Recent links section
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── styling/
+│       │   │   └── UrlForm.css
+│       │   ├── HistoryList.tsx    # Recent links section
+│       │   ├── ResultCard.tsx     # Short link result display
+│       │   ├── UrlForm.tsx        # Input form + validation
+│       │   └── UrlShortener.tsx   # Parent, manages shared state
+│       ├── App.css                # Global styles
+│       ├── App.tsx
+│       ├── config.ts              # API base URL config
+│       └── main.tsx
+├── screenshots/
+│   └── preview.png
+└── README.md
 ```
 
 ## 🔑 Environment Variables
@@ -137,21 +152,3 @@ shrinkurl/
 ## 🛡️ Rate Limiting
 
 The `/shorten` endpoint is rate limited to **20 requests per 10 minutes** per IP address. Redirect links (`/:shortCode`) are not rate limited.
-
-## ✅ Implemented
-
-- URL shortening with random short code generation
-- URL validation (protocol check, malformed URL rejection)
-- Duplicate URL detection (same URL returns existing short code)
-- Click tracking on every redirect
-- Rate limiting on the `/shorten` endpoint
-- Persistent history via localStorage (last 5 links)
-- Inline error messages on the frontend
-- Component-based frontend architecture
-
-## 🗺️ Roadmap
-
-- [ ] Analytics endpoint (`GET /stats/:shortCode` to expose click data)
-- [ ] Custom short codes (let users choose their own alias)
-- [ ] Link expiration (auto-expire links after a set time)
-- [ ] Proper 404 page for invalid short codes# ShrinkURL
