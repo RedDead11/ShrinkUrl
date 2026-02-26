@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background: linear-gradient(90deg, #f3f4f6 0%, #b6c5c6 100%);
   margin: 0;
   display: flex;
@@ -63,14 +63,18 @@ body {
   border: 2px solid #e5e7eb;
   border-radius: 16px;
   background-color: #ffffff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
 .url-form input:focus {
   outline: none;
   border-color: #2aabe7;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
 }
 
@@ -120,7 +124,9 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Result Section */
@@ -130,15 +136,23 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .result-card {
   background: linear-gradient(135deg, #567d84 0%, #3b82f6 100%);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(99, 102, 241, 0.1);
   margin-bottom: 24px;
   transition: all 0.3s ease;
@@ -158,7 +172,7 @@ body {
 
 .short-link-text {
   flex: 1;
-  font-family: 'Monaco', 'Menlo', monospace;
+  font-family: "Monaco", "Menlo", monospace;
   font-size: 1rem;
   color: #111827;
   word-break: break-all;
@@ -228,21 +242,13 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* ======= History Section ======= */
-.history-container {
-  margin-top: 48px;
-  animation: fadeInUp 0.5s ease-out;
-}
-
-.history-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .history-title {
@@ -251,7 +257,7 @@ body {
   gap: 7px;
   font-size: 0.72rem;
   font-weight: 700;
-  color: #9ca3af;
+  color: #2f3033;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0;
@@ -264,8 +270,24 @@ body {
   opacity: 0.7;
 }
 
+.history-container {
+  margin-top: 48px;
+  animation: fadeInUp 0.5s ease-out;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
 .clear-history-btn {
-  background: transparent;
+  background: #059669;
   border: none;
   color: #d1d5db;
   font-size: 0.72rem;
@@ -273,15 +295,15 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 12px;
   border-radius: 6px;
   transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .clear-history-btn:hover {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.08);
+  color: #ea2929;
+  background: rgba(14, 13, 13, 0.08);
 }
 
 .history-list {
@@ -294,19 +316,21 @@ body {
   background: white;
   border-radius: 14px;
   padding: 12px 14px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.04);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.04);
   border: 1px solid #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   transition: all 0.2s ease;
   text-align: left;
 }
 
 .history-card:hover {
   box-shadow: 0 4px 16px rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.2);
+  border-color: rgba(11, 11, 12, 0.2);
   transform: translateY(-1px);
 }
 
@@ -330,7 +354,7 @@ body {
 }
 
 .history-short {
-  font-family: 'Monaco', 'Menlo', monospace;
+  font-family: "Monaco", "Menlo", monospace;
   font-size: 0.82rem;
   color: #6366f1;
   font-weight: 600;
@@ -488,14 +512,6 @@ body {
   .reset-link-btn {
     font-size: 0.85rem;
     padding: 6px 12px;
-  }
-
-  .history-container {
-    margin-top: 32px;
-  }
-
-  .history-card {
-    padding: 10px 12px;
   }
 
   .history-original {

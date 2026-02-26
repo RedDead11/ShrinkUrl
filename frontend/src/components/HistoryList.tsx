@@ -25,48 +25,55 @@ const HistoryList = ({ history, onClear }: Props) => {
   };
 
   return (
-    <div className="history-container">
+  <div className="history-container">
+    <div className="history-header">
       <h2 className="history-title">
         <GoHistory /> Recent Links
       </h2>
       <button className="clear-history-btn" onClick={onClear}>
         Clear
       </button>
-      <div className="history-list">
-        {history.map((item, index) => (
-          <div className="history-card" key={index}>
-            <div className="history-urls">
-              <span className="history-original" title={item.originalUrl}>
-                {formatOriginalUrl(item.originalUrl)}
-              </span>
-              <span className="history-short">{item.shortUrl}</span>
-              <span className="history-clicks-badge">
-                {item.clicks} {item.clicks === 1 ? "visit" : "visits"}
-              </span>
-            </div>
-            <div className="history-actions">
-              <button
-                className="history-copy-btn"
-                onClick={() => handleCopy(item.shortUrl)}
-                title="Copy short link"
-              >
-                <BsCopy />
-              </button>
-              <a
-                href={item.shortUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="history-visit-btn"
-                title="Visit link"
-              >
-                <FaExternalLinkAlt />
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
-  );
+
+    <div className="history-list">
+      {history.map((item, index) => (
+        <div className="history-card" key={item.shortCode || index}>
+          <div className="history-urls">
+            <span className="history-original" title={item.originalUrl}>
+              {formatOriginalUrl(item.originalUrl)}
+            </span>
+            <span className="history-short">{item.shortUrl}</span>
+            <span className="history-clicks-badge">
+              {item.clicks} {item.clicks === 1 ? "visit" : "visits"}
+            </span>
+          </div>
+
+          <div className="history-actions">
+            {/* Copy Button */}
+            <button
+              className="history-copy-btn"
+              onClick={() => handleCopy(item.shortUrl)}
+              title="Copy short link"
+            >
+              <BsCopy />
+            </button>
+            
+            {/* Visit Link (Fixed Tag) */}
+            <a
+              href={item.shortUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="history-visit-btn"
+              title="Visit link"
+            >
+              <FaExternalLinkAlt />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 };
 
 export default HistoryList;
