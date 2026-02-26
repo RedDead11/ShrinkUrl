@@ -48,3 +48,10 @@
   text-align: center;
   animation: fadeInUp 0.3s ease-out;
 }
+
+.history-clicks {
+  font-size: 0.7rem;
+  color: #a0aec0;
+  font-weight: 500;
+  margin-top: 2px;
+}
