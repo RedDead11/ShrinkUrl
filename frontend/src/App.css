@@ -74,6 +74,7 @@ body {
   transform: translateY(-1px);
 }
 
+/* Button Base — scoped to avoid affecting history buttons */
 .input-section button,
 .result-card button {
   padding: 18px 24px;
@@ -231,36 +232,17 @@ body {
   50% { transform: scale(1.05); }
 }
 
-/* Secondary button */
-.secondary-btn {
-  background: #f3f4f6;
-  color: #374151;
-  border: 2px solid #e5e7eb;
-  width: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  padding: 18px 24px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-}
-
-.secondary-btn:hover {
-  background: #e5e7eb;
-  border-color: #d1d5db;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
 /* ======= History Section ======= */
 .history-container {
   margin-top: 48px;
   animation: fadeInUp 0.5s ease-out;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .history-title {
@@ -272,7 +254,7 @@ body {
   color: #9ca3af;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  margin: 0 0 12px 0;
+  margin: 0;
   text-align: left;
 }
 
@@ -280,6 +262,26 @@ body {
   width: 14px;
   height: 14px;
   opacity: 0.7;
+}
+
+.clear-history-btn {
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.clear-history-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
 }
 
 .history-list {
@@ -338,6 +340,22 @@ body {
   max-width: 100%;
 }
 
+.history-clicks-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #6366f1;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  width: fit-content;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
 .history-actions {
   display: flex;
   align-items: center;
@@ -345,7 +363,7 @@ body {
   flex-shrink: 0;
 }
 
-/* History icon buttons — equal size */
+/* History icon buttons */
 .history-copy-btn,
 .history-visit-btn {
   width: 34px;
@@ -373,6 +391,18 @@ body {
   box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
 }
 
+.history-copy-btn.history-copied {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #059669;
+}
+
+.history-copy-label {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .history-visit-btn {
   background: rgba(99, 102, 241, 0.1);
   border: 1.5px solid rgba(99, 102, 241, 0.3);
@@ -392,6 +422,8 @@ body {
 .history-visit-btn svg {
   width: 13px;
   height: 13px;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* Responsive */
@@ -421,7 +453,8 @@ body {
     font-size: 1rem;
   }
 
-  .url-form button {
+  .input-section button,
+  .result-card button {
     padding: 14px 20px;
     font-size: 1rem;
   }
@@ -477,20 +510,4 @@ body {
     font-size: 0.82rem;
     padding: 10px;
   }
-}
-
-.history-clicks-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(99, 102, 241, 0.08);
-  color: #6366f1;
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 20px;
-  border: 1px solid rgba(99, 102, 241, 0.15);
-  width: fit-content;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
 }

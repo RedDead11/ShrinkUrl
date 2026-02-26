@@ -16,9 +16,10 @@ const formatOriginalUrl = (url: string, maxLen = 38): string => {
 
 interface Props {
   history: HistoryItem[];
+  onClear: () => void;
 }
 
-const HistoryList = ({ history }: Props) => {
+const HistoryList = ({ history, onClear }: Props) => {
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
   };
@@ -28,6 +29,9 @@ const HistoryList = ({ history }: Props) => {
       <h2 className="history-title">
         <GoHistory /> Recent Links
       </h2>
+      <button className="clear-history-btn" onClick={onClear}>
+        Clear
+      </button>
       <div className="history-list">
         {history.map((item, index) => (
           <div className="history-card" key={index}>

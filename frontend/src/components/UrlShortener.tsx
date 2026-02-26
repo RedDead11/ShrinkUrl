@@ -97,6 +97,11 @@ const UrlShortener = () => {
     setShortCode("");
   };
 
+  const handleClear = () => {
+    setHistory([]);
+    localStorage.removeItem(HISTORY_KEY);
+  }
+
   return (
     <div className="url-form">
       {!shortCode ? (
@@ -104,7 +109,7 @@ const UrlShortener = () => {
       ) : (
         <ResultCard shortCode={shortCode} onReset={handleReset} />
       )}
-      {history.length > 0 && <HistoryList history={history} />}
+      {history.length > 0 && <HistoryList history={history} onClear={handleClear}/>}
     </div>
   );
 };
