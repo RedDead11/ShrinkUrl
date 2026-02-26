@@ -36,8 +36,8 @@ const HistoryList = ({ history }: Props) => {
                 {formatOriginalUrl(item.originalUrl)}
               </span>
               <span className="history-short">{item.shortUrl}</span>
-              <span className="history-clicks">
-                {item.clicks} {item.clicks === 1 ? "click" : "clicks"}
+              <span className="history-clicks-badge">
+                {item.clicks} {item.clicks === 1 ? "visit" : "visits"}
               </span>
             </div>
             <div className="history-actions">

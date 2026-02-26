@@ -20,17 +20,6 @@
   text-decoration: none;
 }
 
-/* History copy icon button fix */
-.history-copy-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.history-copy-btn svg {
-  display: block; /* Ensures icon renders correctly */
-}
-
 /* Remove or update old secondary-btn if not used anymore */
 .secondary-btn {
   display: none; 
