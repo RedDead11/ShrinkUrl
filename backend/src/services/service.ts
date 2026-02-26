@@ -41,3 +41,15 @@ export const incrementClicksService = async (shortCode: string) => {
     },
   });
 };
+
+export const getStatsService = async (shortCode: string) => {
+  return await prisma.url.findUnique({
+    where: { shortCode },
+    select: {
+      originalUrl: true,
+      shortCode: true,
+      clicks: true,
+      createdAt: true,
+    },
+  });
+};

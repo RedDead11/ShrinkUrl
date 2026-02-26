@@ -36,6 +36,9 @@ const HistoryList = ({ history }: Props) => {
                 {formatOriginalUrl(item.originalUrl)}
               </span>
               <span className="history-short">{item.shortUrl}</span>
+              <span className="history-clicks">
+                {item.clicks} {item.clicks === 1 ? "click" : "clicks"}
+              </span>
             </div>
             <div className="history-actions">
               <button
@@ -45,8 +48,6 @@ const HistoryList = ({ history }: Props) => {
               >
                 <BsCopy />
               </button>
-              
-              {/* FIXED: Added <a */}
               <a
                 href={item.shortUrl}
                 target="_blank"

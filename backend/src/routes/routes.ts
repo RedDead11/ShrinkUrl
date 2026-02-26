@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { createShortUrl, redirectShortUrl } from "../controllers/controller";
+import { createShortUrl, getStats, redirectShortUrl } from "../controllers/controller";
 
 const router = Router();
 
-// create short URL
-router.post("/shorten", createShortUrl);
-
-// redirect
-router.get("/:shortCode", redirectShortUrl);
+// Order matters
+router.post("/shorten", createShortUrl); // create short URL
+router.get("/stats/:shortCode", getStats);  // stats
+router.get("/:shortCode", redirectShortUrl); // redirect
 
 export default router;

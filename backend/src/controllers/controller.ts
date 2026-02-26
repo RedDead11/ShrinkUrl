@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import {
   createShortUrlService,
+  getStatsService,
   getUrlService,
   incrementClicksService,
 } from "../services/service";
-
 
 // POST /shorten
 export const createShortUrl = async (req: Request, res: Response) => {
@@ -46,8 +46,8 @@ export const createShortUrl = async (req: Request, res: Response) => {
 
 // GET /:shortCode
 export const redirectShortUrl = async (req: Request, res: Response) => {
-  const { shortCode } = req.params;
-  if (!shortCode || Array.isArray(shortCode)) {
+  const shortCode = req.params.shortCode as string;
+  if (!shortCode) {
     return res.status(400).send("Invalid short code");
   }
 
@@ -65,5 +65,18 @@ export const redirectShortUrl = async (req: Request, res: Response) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
+  }
+};
+
+export const getStats = async (req: Request, res: Response) => {
+  const shortCode = req.params.shortCode as string;
+
+  try {
+    const stats = await getStatsService(shortCode);
+    if (!stats) return res.status(404).json({ error: "Short code not found" });
+    res.json(stats);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server Error" });
   }
 };
