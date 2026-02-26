@@ -10,7 +10,29 @@
   <img src="./screenshots/preview.png" alt="ShrinkURL Preview" width="600" style="border-radius: 12px;" />
 </p>
 
-A full-stack URL shortener built with React, TypeScript, Express, Prisma and PostgreSQL (Neon). Paste a long link, get a short one — with click tracking, visit analytics, persistent history and rate limiting.
+---
+
+## 👋 What is this?
+
+**ShrinkURL** is a production-ready full-stack URL shortener. It was built from scratch with a real backend, a real database, and features you'd find in tools like Bitly or TinyURL.
+
+Paste a long link, get a short one. Every redirect is tracked, every visit is counted, and your recent links persist across sessions.
+
+> **Built with:** React · TypeScript · Express · Prisma · PostgreSQL (Neon)
+> **Deployed on:** Vercel (frontend) · Render (backend) · Neon (database)
+
+---
+
+## 🔍 What makes this interesting technically?
+
+- **Rate limiting** on the shorten endpoint — prevents abuse without blocking legitimate users
+- **Async click tracking** — redirects happen immediately, the click counter updates in the background so the user never waits
+- **Duplicate detection** — the same URL always returns the same short code, no wasted DB rows
+- **Analytics endpoint** — `GET /stats/:shortCode` exposes click data, visit counts refresh on page load
+- **Route ordering** — `/stats/:shortCode` is registered before `/:shortCode` to prevent Express wildcard collision
+- **localStorage persistence** — history survives page refresh without any backend involvement
+
+---
 
 ## ✨ Features
 
